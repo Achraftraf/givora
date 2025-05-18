@@ -2,12 +2,218 @@
 @tailwind components;
 @tailwind utilities;
 
-/* In your global CSS file (e.g., styles/globals.css) */
-.scrollbar-hidden {
-  scrollbar-width: none; /* For Firefox */
-  -ms-overflow-style: none; /* For Internet Explorer and Edge */
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+  --pink-500: 236, 72, 153;
+  --purple-600: 147, 51, 234;
 }
 
-.scrollbar-hidden::-webkit-scrollbar {
-  display: none; /* For Chrome, Safari, and Opera */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+/* Custom animations */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+/* Custom styles */
+.gradient-text {
+  background: linear-gradient(to right, rgb(var(--pink-500)), rgb(var(--purple-600)));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
+
+.gradient-border {
+  position: relative;
+  border-radius: 0.75rem;
+  padding: 0.1rem;
+  background: linear-gradient(
+    90deg,
+    rgb(var(--pink-500)),
+    rgb(var(--purple-600)),
+    rgb(var(--pink-500))
+  );
+  background-size: 200% auto;
+  animation: shine 3s linear infinite;
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, #f5f7fa 0%, #f9e2ff 100%);
+}
+
+.dark .gradient-bg {
+  background: linear-gradient(135deg, #1a1a2e 0%, #2a1e5c 100%);
+}
+
+/* Custom scrollbar for the entire website */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(156, 39, 176, 0.3);
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(156, 39, 176, 0.5);
+}
+
+/* Custom components */
+.gift-card {
+  transition: all 0.3s ease;
+}
+
+.gift-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px -5px rgba(var(--pink-500), 0.1), 
+              0 10px 10px -5px rgba(var(--purple-600), 0.04);
+}
+
+.floating-icon {
+  animation: float 3s ease-in-out infinite;
+}
+
+.typing-indicator {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 0 auto;
+  border-right: 0.15em solid rgb(var(--pink-500));
+  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: rgb(var(--pink-500)) }
+}
+
+/* Custom animations for message bubbles */
+.message-bubble-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* Custom tooltip */
+.custom-tooltip {
+  position: relative;
+}
+
+.custom-tooltip:hover:after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  white-space: nowrap;
+  z-index: 10;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .responsive-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Glassmorphism effect */
+.glass {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.dark .glass {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Theme-specific styles */
+.theme-switch {
+  position: relative;
+  width: 60px;
+  height: 30px;
+  border-radius: 15px;
+  background: #f1f1f1;
+  transition: all 0.3s;
+}
+
+.dark .theme-switch {
+  background: #374151;
+}
+
+.theme-switch::after {
+  content: '';
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  top: 4px;
+  left: 4px;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
+}
+
+.dark .theme-switch::after {
+  transform: translateX(30px);
+  background: #1e293b;
 }

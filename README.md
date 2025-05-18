@@ -63,7 +63,7 @@ const HomePage = () => {
             GPTGenius: Your AI language companion. Powered by OpenAI, it
             enhances your conversations, content creation, and more!
           </p>
-          <Link href="/chat" className="btn btn-secondary ">
+          <Link href="/giftIdea" className="btn btn-secondary ">
             Get Started
           </Link>
         </div>
@@ -314,10 +314,7 @@ This component is responsible for rendering navigation links based on the `links
 ```js
 import Link from "next/link";
 const links = [
-  { href: "/chat", label: "chat" },
-  { href: "/tours", label: "tours" },
-  { href: "/tours/new-tour", label: "new tour" },
-  { href: "/profile", label: "profile" },
+  { href: "/giftIdea", label: "giftIdea" },
 ];
 
 const NavLinks = () => {

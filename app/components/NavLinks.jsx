@@ -3,8 +3,6 @@ import { FaComments, FaUser, FaGift } from "react-icons/fa";
 
 const links = [
   { href: "/chat", label: "Chat Assistant", icon: <FaComments className="mr-2" /> },
-  { href: "/gift-ideas", label: "Gift Ideas", icon: <FaGift className="mr-2" /> },
-  { href: "/profile", label: "My Profile", icon: <FaUser className="mr-2" /> },
 ];
 
 const NavLinks = () => {
