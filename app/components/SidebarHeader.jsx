@@ -12,7 +12,7 @@ const SidebarHeader = () => {
         <div>
           <h2 className="text-2xl font-extrabold text-primary">
             <span className="bg-gradient-to-r from-pink-500 to-purple-600 text-transparent bg-clip-text">
-              FrenzyAI
+              GIVORA
             </span>
           </h2>
           <p className="text-xs text-gray-600 dark:text-gray-400">Smart Gift Recommendations</p>

@@ -9,15 +9,27 @@ const themes = {
 };
 
 const ThemeToggle = () => {
-  const [theme, setTheme] = useState(themes.light);
+  const [theme, setTheme] = useState("");
   const [isMounted, setIsMounted] = useState(false);
 
   // Set initial theme based on system preference or localStorage
   useEffect(() => {
     setIsMounted(true);
-    const savedTheme = localStorage.getItem("theme") || 
-      (window.matchMedia("(prefers-color-scheme: dark)").matches ? themes.dark : themes.light);
     
+    // Get saved theme from localStorage if available
+    let savedTheme = localStorage.getItem("theme");
+    
+    // If no saved theme, check system preference
+    if (!savedTheme) {
+      savedTheme = window.matchMedia("(prefers-color-scheme: dark)").matches 
+        ? themes.dark 
+        : themes.light;
+      
+      // Save the detected preference to localStorage
+      localStorage.setItem("theme", savedTheme);
+    }
+    
+    // Apply the theme
     setTheme(savedTheme);
     document.documentElement.setAttribute("data-theme", savedTheme);
     document.documentElement.classList.toggle("dark", savedTheme === themes.dark);
